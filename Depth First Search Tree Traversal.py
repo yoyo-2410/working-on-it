@@ -1,14 +1,8 @@
-def dfs(graph, node, visited=None):
-    if visited is None: visited = []
-    visited.append(node)
-    for n in graph.get(node, []):
-        if n not in visited:
-            dfs(graph, n, visited)
-    return visited
+def dfs(g,n,v=None):
+    v=v or []; v+=[n]
+    for x in g.get(n,[]):
+        if x not in v: dfs(g,x,v)
+    return v
 
-graph = {
-    "A":["B","C"], "B":["D"], "C":["E","F"],
-    "D":[], "E":["G"], "F":[], "G":[]
-}
-
-print("\nDFS Traversal:", dfs(graph, "A"))
+g={"A":["B","C"],"B":["D"],"C":["E","F"],"D":[],"E":["G"],"F":[],"G":[]}
+print("DFS Traversal:",dfs(g,"A"))
