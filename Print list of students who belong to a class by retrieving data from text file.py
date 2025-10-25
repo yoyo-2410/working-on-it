@@ -7,20 +7,12 @@
 # Arjun,10
 # Meena,8
 
-filename = "students.txt"
-
-cls = input("Enter class to search: ")
+fname = "students.txt"
+cls = input("Enter class: ")
 
 try:
-    with open(filename, "r") as f:
-        print(f"\nStudents in class {cls}:")
-        found = False
-        for line in f:
-            name, student_class = line.strip().split(",")
-            if student_class == cls:
-                print(name)
-                found = True
-        if not found:
-            print("No students found for this class.")
+    with open(fname) as f:
+        studs = [n for n, c in (line.strip().split(",") for line in f) if c == cls]
+    print(f"\nStudents in class {cls}:\n" + "\n".join(studs) if studs else "No students found.")
 except FileNotFoundError:
-    print("File not found! Please ensure 'students.txt' exists.")
+    print("File not found! Create 'students.txt' first.")
