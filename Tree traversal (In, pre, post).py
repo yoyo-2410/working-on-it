@@ -1,26 +1,13 @@
 class Node:
-    def __init__(self, data):
-        self.data = data
-        self.left = self.right = None
+    def __init__(self,d): self.d=d; self.l=self.r=None
 
-def inorder(root):
-    if root:
-        inorder(root.left); print(root.data, end=" "); inorder(root.right)
+def inorder(t):  if t: inorder(t.l); print(t.d,end=' '); inorder(t.r)
+def preorder(t): if t: print(t.d,end=' '); preorder(t.l); preorder(t.r)
+def postorder(t):if t: postorder(t.l); postorder(t.r); print(t.d,end=' ')
 
-def preorder(root):
-    if root:
-        print(root.data, end=" "); preorder(root.left); preorder(root.right)
+r=Node('A'); r.l=Node('B'); r.r=Node('C')
+r.l.l=Node('D'); r.l.r=Node('E'); r.r.r=Node('F')
 
-def postorder(root):
-    if root:
-        postorder(root.left); postorder(root.right); print(root.data, end=" ")
-
-if __name__ == "__main__":
-    root = Node('A')
-    root.left = Node('B'); root.right = Node('C')
-    root.left.left = Node('D'); root.left.right = Node('E')
-    root.right.right = Node('F')
-
-    print("Inorder:"); inorder(root)
-    print("\nPreorder:"); preorder(root)
-    print("\nPostorder:"); postorder(root)
+print("Inorder:"); inorder(r)
+print("\nPreorder:"); preorder(r)
+print("\nPostorder:"); postorder(r)
