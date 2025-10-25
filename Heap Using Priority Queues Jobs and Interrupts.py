@@ -1,12 +1,18 @@
 import heapq as hq
 
-# Jobs & interrupts (concept demonstration)
-jobs = [(2,'job1'),(5,'job2'),(1,'job3')]
+# (priority, job_name)
+jobs = [(2, 'Job1'), (5, 'Job2'), (1, 'Job3')]
 hq.heapify(jobs)
 
-print("Initial Heap:", jobs)
+print("Initial Jobs (Min-Heap):", jobs)
 
 while jobs:
-    print("Processing:", hq.heappop(jobs))
+    priority, job = hq.heappop(jobs)
+    print(f"Processing {job} with priority {priority}")
+
+    # Simulate an interrupt arriving dynamically
+    if job == 'Job1':
+        print("Interrupt! New high-priority job arrived (priority 0)")
+        hq.heappush(jobs, (0, 'Urgent_Job'))
 
 print("All jobs completed!")
